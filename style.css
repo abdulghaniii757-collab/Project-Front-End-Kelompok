@@ -75,3 +75,64 @@ button {
   cursor: pointer;
   margin-top: 6px;
 }
+
+.toggle button.aktif {
+  background: var(--accent);
+  color: #06201f;
+  border: none;
+}
+
+.field {
+  margin-bottom: 14px;
+}
+
+.field label {
+  display: block;
+  font-size: 13px;
+  color: var(--muted);
+  margin-bottom: 4px;
+}
+
+#error {
+  color: #e0654f;
+  font-size: 13px;
+  display: none;
+  margin-top: 8px;
+}
+
+#hasil {
+  display: none;
+  margin-top: 20px;
+  border-top: 1px solid var(--line);
+  padding-top: 16px;
+}
+
+#angkaBmi {
+  font-size: 40px;
+  font-weight: 700;
+}
+
+.kategori {
+  display: inline-block;
+  margin: 8px 0;
+  padding: 4px 10px;
+  border-radius: 99px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #06201f;
+}
+
+#daftarRiwayat {
+  list-style: none;
+  margin: 8px 0 0;
+  padding: 0;
+  font-size: 13px;
+}
+
+#daftarRiwayat li {
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 8px 10px;
+  margin-bottom: 6px;
+}
