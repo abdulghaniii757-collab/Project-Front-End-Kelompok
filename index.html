@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kalkulator BMI</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main>
+
+  <header>
+    <div>
+      <h1>Kalkulator BMI</h1>
+      <p>Hitung BMI, berat ideal, dan riwayatnya.</p>
+    </div>
+  </header>
+
+  <div class="panel">
+    <div class="row toggle">
+      <button id="btnMetric" class="aktif" type="button">Metric</button>
+      <button id="btnImperial" type="button">Imperial</button>
+    </div>
+
+    <div class="field">
+      <label>Berat (<span id="unitBerat">kg</span>)</label>
+      <input type="text" id="berat" placeholder="60" autocomplete="off">
+    </div>
+    <div class="field">
+      <label>Tinggi (<span id="unitTinggi">cm</span>)</label>
+      <input type="text" id="tinggi" placeholder="165" autocomplete="off">
+    </div>
+
+    <div class="row">
+      <button id="btnHitung" type="button">Hitung</button>
+      <button id="btnReset" type="button" style="background:transparent;color:var(--muted)">Reset</button>
+    </div>
+    <p id="error">Isi berat & tinggi dengan angka valid.</p>
+
+    <div id="hasil">
+      <span id="angkaBmi">0.0</span> kg/m²
+      <div><span class="kategori" id="labelKategori">—</span></div>
+      <p id="beratIdeal" style="font-size:13px;color:var(--muted)"></p>
+    </div>
+  </div>
+
+  <div class="panel">
+    <div style="display:flex;justify-content:space-between">
+      <strong>Riwayat</strong>
+      <button id="btnHapusRiwayat" type="button" style="width:auto;background:transparent;color:var(--muted)">Hapus</button>
+    </div>
+    <ul id="daftarRiwayat"></ul>
+  </div>
+
+</main>
+
+<script src="script.js"></script>
+</body>
+</html>
