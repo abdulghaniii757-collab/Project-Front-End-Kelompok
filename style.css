@@ -1,0 +1,77 @@
+:root {
+  --bg: #f4f4f4;
+  --panel: #ffffff;
+  --line: #e2e2e2;
+  --text: #1c1c1c;
+  --muted: #6b6b6b;
+  --accent: #4fb8a6;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: sans-serif;
+  display: flex;
+  justify-content: center;
+  padding: 40px 20px;
+}
+
+main {
+  width: 100%;
+  max-width: 440px;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+header p {
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.panel {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 24px;
+  margin-bottom: 16px;
+}
+
+.row {
+  display: flex;
+  gap: 8px;
+}
+
+.row button,
+button {
+  flex: 1;
+}
+
+input,
+button,
+.toggle button {
+  background: var(--bg);
+  border: 1px solid var(--line);
+  color: var(--text);
+  border-radius: 8px;
+  padding: 10px;
+  font-size: 15px;
+  width: 100%;
+}
+
+button {
+  background: var(--accent);
+  color: #06201f;
+  font-weight: 700;
+  border: none;
+  cursor: pointer;
+  margin-top: 6px;
+}
