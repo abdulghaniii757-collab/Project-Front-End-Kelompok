@@ -23,19 +23,24 @@
     </div>
 
     <div class="field">
+      <label>Nama</label>
+      <input type="text" id="nama" placeholder="Masukkan nama" autocomplete="off">
+    </div>
+
+    <div class="field">
       <label>Berat (<span id="unitBerat">kg</span>)</label>
-      <input type="text" id="berat" placeholder="60" autocomplete="off">
+      <input type="number" id="berat" placeholder="60" min="3" max="300" autocomplete="off">
     </div>
     <div class="field">
       <label>Tinggi (<span id="unitTinggi">cm</span>)</label>
-      <input type="text" id="tinggi" placeholder="165" autocomplete="off">
+      <input type="number" id="tinggi" placeholder="165" autocomplete="off">
     </div>
 
     <div class="row">
       <button id="btnHitung" type="button">Hitung</button>
       <button id="btnReset" type="button" style="background:transparent;color:var(--muted)">Reset</button>
     </div>
-    <p id="error">Isi berat & tinggi dengan angka valid.</p>
+    <p id="error">Isi nama, berat & tinggi dengan valid.</p>
 
     <div id="hasil">
       <span id="angkaBmi">0.0</span> kg/m²
