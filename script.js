@@ -1,8 +1,8 @@
-var nama = document.getElementById('nama');
-var berat = document.getElementById('berat');
-var tinggi = document.getElementById('tinggi');
-var hasil = document.getElementById('hasil');
-var error = document.getElementById('error');
+const nama = document.getElementById('nama');
+const berat = document.getElementById('berat');
+const tinggi = document.getElementById('tinggi');
+const hasil = document.getElementById('hasil');
+const error = document.getElementById('error');
 let satuan = 'metric';
 
 document.getElementById('btnMetric').onclick = function() {
@@ -15,15 +15,15 @@ document.getElementById('btnImperial').onclick = function() {
 
 function pilihSatuan(s) {
   satuan = s;
-  var tombolMetric = document.getElementById('btnMetric');
-  var tombolImperial = document.getElementById('btnImperial');
-  var unitBerat = document.getElementById('unitBerat');
-  var unitTinggi = document.getElementById('unitTinggi');
+  const tombolMetric = document.getElementById('btnMetric');
+  const tombolImperial = document.getElementById('btnImperial');
+  const unitBerat = document.getElementById('unitBerat');
+  const unitTinggi = document.getElementById('unitTinggi');
 
   tombolMetric.classList.toggle('aktif', s === 'metric');
   tombolImperial.classList.toggle('aktif', s === 'imperial');
-  
-  if (s === 'metric') { 
+
+  if (s === 'metric') {
     unitBerat.textContent = 'kg';
     unitTinggi.textContent = 'cm';
     berat.min = 2;
@@ -42,7 +42,7 @@ function pilihSatuan(s) {
     tinggi.max = 200;
     tinggi.placeholder = '20';
   }
-  
+
   berat.value = '';
   tinggi.value = '';
   hasil.style.display = 'none';
@@ -63,10 +63,10 @@ tinggi.oninput = function() {
 };
 
 document.getElementById('btnHitung').onclick = function() {
-  var n = nama.value.trim() || 'Tanpa Nama';
-  var b = parseFloat(berat.value);
-  var t = parseFloat(tinggi.value);
-  
+  const n = nama.value.trim() || 'Tanpa Nama';
+  const b = parseFloat(berat.value);
+  const t = parseFloat(tinggi.value);
+
   if (!b || !t || b <= 0 || t <= 0) {
     error.textContent = 'Isi nama, berat & tinggi dengan valid.';
     error.style.display = 'block';
@@ -74,12 +74,12 @@ document.getElementById('btnHitung').onclick = function() {
     return;
   }
 
-  var minBerat = parseFloat(berat.min);
-  var maxBerat = parseFloat(berat.max);
-  var minTinggi = parseFloat(tinggi.min);
-  var maxTinggi = parseFloat(tinggi.max);
-  var unitBerat = satuan === 'metric' ? 'kg' : 'lbs';
-  var unitTinggi = satuan === 'metric' ? 'cm' : 'in';
+  const minBerat = parseFloat(berat.min);
+  const maxBerat = parseFloat(berat.max);
+  const minTinggi = parseFloat(tinggi.min);
+  const maxTinggi = parseFloat(tinggi.max);
+  const unitBerat = satuan === 'metric' ? 'kg' : 'lbs';
+  const unitTinggi = satuan === 'metric' ? 'cm' : 'in';
 
   if (b < minBerat || b > maxBerat) {
     error.textContent = 'Berat badan harus di antara ' + minBerat + ' dan ' + maxBerat + ' ' + unitBerat + '.';
@@ -97,8 +97,8 @@ document.getElementById('btnHitung').onclick = function() {
 
   error.style.display = 'none';
 
-  var bmi;
-  var tinggiMeter;
+  let bmi;
+  let tinggiMeter;
 
   if (satuan === 'imperial') {
     bmi = (b / (t * t)) * 703;
@@ -108,8 +108,8 @@ document.getElementById('btnHitung').onclick = function() {
     bmi = b / (tinggiMeter * tinggiMeter);
   }
 
-  var label;
-  var warna;
+  let label;
+  let warna;
 
   if (bmi < 18.5) {
     label = 'Kekurangan berat badan';
@@ -129,12 +129,12 @@ document.getElementById('btnHitung').onclick = function() {
   document.getElementById('labelKategori').textContent = label;
   document.getElementById('labelKategori').style.background = warna;
 
-  var idealMin = (18.5 * tinggiMeter * tinggiMeter).toFixed(1);
-  var idealMax = (24.9 * tinggiMeter * tinggiMeter).toFixed(1);
-  
+  const idealMin = (18.5 * tinggiMeter * tinggiMeter).toFixed(1);
+  const idealMax = (24.9 * tinggiMeter * tinggiMeter).toFixed(1);
+
   if (satuan === 'imperial') {
-    var idealMinLbs = (idealMin * 2.20462).toFixed(1);
-    var idealMaxLbs = (idealMax * 2.20462).toFixed(1);
+    const idealMinLbs = (idealMin * 2.20462).toFixed(1);
+    const idealMaxLbs = (idealMax * 2.20462).toFixed(1);
     document.getElementById('beratIdeal').textContent = 'Berat ideal: ' + idealMinLbs + '-' + idealMaxLbs + ' lbs';
   } else {
     document.getElementById('beratIdeal').textContent = 'Berat ideal: ' + idealMin + '-' + idealMax + ' kg';
@@ -142,7 +142,7 @@ document.getElementById('btnHitung').onclick = function() {
 
   hasil.style.display = 'block';
 
-  var riwayat = JSON.parse(localStorage.getItem('riwayatBmi') || '[]');
+  const riwayat = JSON.parse(localStorage.getItem('riwayatBmi') || '[]');
   riwayat.unshift({ nama: n, bmi: bmi.toFixed(1), label: label });
   localStorage.setItem('riwayatBmi', JSON.stringify(riwayat.slice(0, 5)));
   renderRiwayat();
@@ -159,9 +159,9 @@ function tekanEnter(event) {
 }
 
 document.getElementById('btnReset').onclick = function() {
-  nama.value = ''; 
-  berat.value = ''; 
-  tinggi.value = ''; 
+  nama.value = '';
+  berat.value = '';
+  tinggi.value = '';
   hasil.style.display = 'none';
   error.style.display = 'none';
 };
@@ -172,12 +172,11 @@ document.getElementById('btnHapusRiwayat').onclick = function() {
 };
 
 function renderRiwayat() {
-  var riwayat = JSON.parse(localStorage.getItem('riwayatBmi') || '[]');
-  var daftar = document.getElementById('daftarRiwayat');
-  var isi = '';
-  var i;
+  const riwayat = JSON.parse(localStorage.getItem('riwayatBmi') || '[]');
+  const daftar = document.getElementById('daftarRiwayat');
+  let isi = '';
 
-  for (i = 0; i < riwayat.length; i++) {
+  for (let i = 0; i < riwayat.length; i++) {
     isi += '<li><strong>' + riwayat[i].nama + '</strong>: ' + riwayat[i].bmi + ' kg/m2 - ' + riwayat[i].label + '</li>';
   }
 
