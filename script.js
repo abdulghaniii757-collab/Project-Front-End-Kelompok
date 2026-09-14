@@ -24,11 +24,18 @@ function pilihSatuan(s) {
     berat.min = 3;
     berat.max = 300;
     berat.placeholder = "60";
+    tinggi.min = 48;
+    tinggi.max = 200;
+    tinggi.placeholder = "165";
   } else {
     // 3 kg = ~6.6 lbs, 300 kg = ~661 lbs
     berat.min = 7;
     berat.max = 660;
     berat.placeholder = "130";
+    // Tinggi imperial: minimal 48 in, maksimal 200 in sesuai permintaan
+    tinggi.min = 48;
+    tinggi.max = 200;
+    tinggi.placeholder = "70";
   }
   
   berat.value = '';
@@ -37,11 +44,18 @@ function pilihSatuan(s) {
   error.style.display = 'none';
 }
 
-// Mencegah user mengetik berat di luar batas min/max
+// Mencegah user mengetik berat atau tinggi di luar batas max
 berat.oninput = () => {
   const val = parseFloat(berat.value);
   const max = parseFloat(berat.max);
   if (val > max) berat.value = max;
+};
+
+tinggi.oninput = () => {
+  const val = parseFloat(tinggi.value);
+  const max = parseFloat(berat.max); // Biar aman, ambil max sesuai input tinggi
+  const tinggiMax = parseFloat(tinggi.max);
+  if (val > tinggiMax) tinggi.value = tinggiMax;
 };
 
 $('btnHitung').onclick = () => {
@@ -57,9 +71,18 @@ $('btnHitung').onclick = () => {
 
   const minBerat = parseFloat(berat.min);
   const maxBerat = parseFloat(berat.max);
+  const minTinggi = parseFloat(tinggi.min);
+  const maxTinggi = parseFloat(tinggi.max);
 
   if (b < minBerat || b > maxBerat) {
     error.textContent = `Berat badan harus di antara ${minBerat} dan ${maxBerat} ${satuan === 'metric' ? 'kg' : 'lbs'}.`;
+    error.style.display = 'block';
+    hasil.style.display = 'none';
+    return;
+  }
+
+  if (t < minTinggi || t > maxTinggi) {
+    error.textContent = `Tinggi badan harus di antara ${minTinggi} dan ${maxTinggi} ${satuan === 'metric' ? 'cm' : 'in'}.`;
     error.style.display = 'block';
     hasil.style.display = 'none';
     return;
